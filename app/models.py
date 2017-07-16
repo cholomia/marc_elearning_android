@@ -6,6 +6,7 @@ from .validators import validate_pdf
 class Track(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    sequence = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -15,6 +16,7 @@ class Subject(models.Model):
     track = models.ForeignKey(Track, related_name='subjects', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    sequence = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -25,6 +27,7 @@ class Lesson(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     pdf = models.FileField(validators=[validate_pdf])
+    sequence = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
