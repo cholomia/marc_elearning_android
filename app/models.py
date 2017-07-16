@@ -12,6 +12,14 @@ class Track(models.Model):
         return self.title
 
 
+class TrackImage(models.Model):
+    track = models.ForeignKey(Track, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.image.name
+
+
 class Subject(models.Model):
     track = models.ForeignKey(Track, related_name='subjects', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
