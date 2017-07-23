@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Track, Subject, Lesson, Test, Quiz, TrackImage
+from .models import Track, Subject, Lesson, Test, Quiz, TrackImage, TrackVideo
 
 
 class QuizSerializer(serializers.ModelSerializer):
@@ -36,10 +36,17 @@ class TrackImageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TrackVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrackVideo
+        fields = '__all__'
+
+
 class TrackSerializer(serializers.ModelSerializer):
     subjects = SubjectSerializer(many=True, read_only=True)
     tests = TestSerializer(many=True, read_only=True)
     images = TrackImageSerializer(many=True, read_only=True)
+    videos = TrackVideoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Track
