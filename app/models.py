@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import validate_pdf
+from .validators import validate_pdf, validate_video
 
 
 # Create your models here.
@@ -18,6 +18,14 @@ class TrackImage(models.Model):
 
     def __str__(self):
         return self.image.name
+
+
+class TrackVideo(models.Model):
+    track = models.ForeignKey(Track, related_name='videos', on_delete=models.CASCADE)
+    video = models.FileField(validators=[validate_video])
+
+    def __str__(self):
+        return self.video.name
 
 
 class Subject(models.Model):
