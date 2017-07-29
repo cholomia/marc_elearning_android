@@ -22,10 +22,11 @@ class TrackImage(models.Model):
 
 class TrackVideo(models.Model):
     track = models.ForeignKey(Track, related_name='videos', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default="Video Display Name")
     video = models.FileField(validators=[validate_video])
 
     def __str__(self):
-        return self.video.name
+        return self.name
 
 
 class Subject(models.Model):
