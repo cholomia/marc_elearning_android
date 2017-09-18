@@ -42,8 +42,7 @@ class Subject(models.Model):
 class Lesson(models.Model):
     subject = models.ForeignKey(Subject, related_name='lessons', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    pdf = models.FileField(validators=[validate_pdf])
+    description = models.TextField(default="Enter description here...")
     sequence = models.IntegerField(default=0)
 
     def __str__(self):
